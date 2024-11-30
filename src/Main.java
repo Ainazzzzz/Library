@@ -55,6 +55,5 @@ public class Main {
                 System.out.println("Бронирование завершено для книги: " + reservation.getBook().getTitle());
             }
         }
-
     }
 }
