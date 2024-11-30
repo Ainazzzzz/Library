@@ -1,5 +1,5 @@
 import java.util.Arrays;
-
+import java.time.LocalDate;
 public class Library {
     private String name;
     private String address;
@@ -17,14 +17,29 @@ public class Library {
         this.clients = clients;
     }
 
-    public Library() {
-    }
 
     // посмотреть доступные книги - Нурис
     // посмотреть занятые книги - Марсель
     // Забронировать книгу - Ринат
-    // Вернуть книгу - Алтынай
+    // Вернуть книгу - Алтынайreturn
+    public Library(String fio, String nameOfBook, LocalDate nowDate) {
+        for(int i =0; i < clients.length; i++){
+            while(fio.equalsIgnoreCase(clients[i].getFullName()) && nameOfBook.equalsIgnoreCase(books[i].getTitle())){
+                if(nowDate.isAfter(brons[i].getEndDate())){
+                    int dayNow = nowDate.getDayOfMonth();
+                    int dayOfLimit = brons[i].getEndDate().getDayOfMonth();
+                    int Raznica = dayOfLimit - dayNow;
+                    int SummaShtrafa = Raznica*100;
+                    clients[i].setBalance(clients[i].getBalance() - SummaShtrafa);
+                }else{
+                    books[i].setAvailable(true);
+                }
+            }
+
+        }
+    }
     // Выход - я
+
 
     public String getName() {
         return name;
